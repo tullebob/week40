@@ -2,6 +2,8 @@ import "./style.css"
 import "bootstrap/dist/css/bootstrap.css"
 import "./jokeFacade"
 import jokeFacade from "./jokeFacade"
+import userFacade from "./userFacade"
+
 
 /* 
   Add your JavaScript for all exercises Below or in separate js-files, which you must the import above
@@ -65,6 +67,22 @@ function fetchQuote() {
 
 /* JS For Exercise-3 below */
 
+const URL = "http://localhost:3333/api/users"
+fetch(URL)
+.then(res=>res.json())
+.then(users => {
+    const userRows = users.map(user => `
+    <tr>
+      <td>${user.id}</td>
+      <td>${user.age}</td>
+      <td>${user.name}</td>
+      <td>${user.gender}</td>
+      <td>${user.email}</td>
+    </tr>
+    `)
+    const userRowsAsString = userRows.join("")
+    document.getElementById("allUserRows").innerHTML = userRowsAsString
+})
 
 /* 
 Do NOT focus on the code below, UNLESS you want to use this code for something different than
